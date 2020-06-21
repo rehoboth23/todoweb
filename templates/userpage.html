@@ -1,0 +1,13 @@
+{% if user.is_authenticated %}
+{{user.username}}
+{% endif %}
+{% for object in todos %}
+<ul>
+    <li>{{object}}</li>
+</ul>
+
+{% endfor %}
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
