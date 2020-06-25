@@ -58,13 +58,12 @@
   width: 50%;
 }
 
-#submitbtn {
+.submitbtn {
   justify-self: center;
   background-color: rgb(245,236,12);
   border-radius: 20px;
-  color: white;
 }
-#submitbtn:hover {
+.submitbtn:hover {
   background-color: #66d7d7;
   color: rgb(196,32,31);
 }

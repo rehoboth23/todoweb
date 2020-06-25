@@ -11,13 +11,16 @@ def complete_item(request, id):
     obj = get_object_or_404(Todo, id=id, user=request.user)
     obj.complete()
     obj.save()
-    return redirect('dashboard')
+    return redirect('todo:dashboard')
+
+
+def return_to_prev(request):
+    return redirect('../../')
 
 
 def search_view(request):
     user = request.user
-    string = str(request.GET.get('search'))
-    print(string)
+    string = str(request.GET.get('todo:search'))
     if user and user.is_authenticated:
         querylist = [object for object in Todo.objects.all() if object.search(string)]
         context = {
@@ -36,7 +39,7 @@ def delete_item(request, id):
 def login_user(request):
     user = request.user
     if user and user.is_authenticated:
-        return redirect('dashboard')
+        return redirect('todo:dashboard')
     else:
         if request.method == 'GET':
             context = {
@@ -52,14 +55,13 @@ def login_user(request):
                 login(request, user)
                 return redirect('../dashboard/')
             else:
-                print(user)
-                return redirect('login')
+                return redirect('todo:login')
 
 
 def logout_user(request):
     if request.method == 'POST':
         logout(request)
-        return redirect('login')
+        return redirect('todo:login')
 
 
 def userPage(request, spec=None):
@@ -75,7 +77,7 @@ def userPage(request, spec=None):
                 return render(request, 'userpage.html', context)
 
             else:
-                return redirect('login')
+                return redirect('todo:login')
         else:
             if spec == 'important':
                 important = Todo.objects.filter(important=True, completed=False, user=user)
@@ -99,13 +101,11 @@ def userPage(request, spec=None):
 def create_todo_back(request):
     if request.method == 'POST':
         form = Create_Todo_Form(request.POST)
-        print(form.fields)
         if form.is_valid():
-            print('pie')
             newtodo = form.save(commit=False)
             newtodo.user = request.user
             newtodo.save()
-            return redirect('dashboard')
+            return redirect('todo:dashboard')
         else:
             user = request.user
             querylist = Todo.objects.filter(user=user)
@@ -113,30 +113,16 @@ def create_todo_back(request):
             return render(request, 'userpage.html', {'title': 'CREATE', 'spec': True, 'todos': querylist, 'form': form})
 
 
-def return_view(request):
-    return redirect('../../../')
-
-
 class Create_User(generic.CreateView):
     template_name = 'signup.html'
     form_class = Signup_Form
+    user = None
 
     def form_valid(self, form):
-        form.save()
+        self.user = form.save()
+
         return super().form_valid(form)
 
     def get_success_url(self):
-        return '../'
-
-
-# class Create_Todo_Front(generic.CreateView):
-#     template_name = 'create.html'
-#     form_class = Create_Todo_Form
-
-
-# def detail_view(request, id):
-#     obj = get_object_or_404(Todo, id=id)
-#     context = {
-#         'object': obj,
-#     }
-#     return render(request, 'itemview.html', context)
+        login(self.request, self.user)
+        return '../dashboard'
