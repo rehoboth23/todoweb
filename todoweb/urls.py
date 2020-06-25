@@ -16,21 +16,26 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from todo.views import (Create_User, userPage, login_user,
-                        home, logout_user, Create_Todo_Front,
-                        create_todo_back,
+                        logout_user,create_todo_back, return_view,
+                        complete_item, delete_item, search_view
                         )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home, name='home'),
 
     # auth
     path('signup/', Create_User.as_view(), name='signup'),
-    path('login/', login_user, name='login'),
+    path('', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
 
     # todos
-    path('todos/', userPage, name='userPage'),
-    path('create/', Create_Todo_Front.as_view(), name='create'),
+    path('dashboard/', userPage, name='dashboard'),
+    path('spec/<str:spec>', userPage, name='spec'),
     path('addtodo/', create_todo_back, name='addtodo'),
+
+    # others
+    path('return/', return_view, name='return'),
+    path('complete/<int:id>', complete_item, name='complete'),
+    path('delete/<int:id>', delete_item, name='delete'),
+    path('search', search_view, name='search'),
 ]

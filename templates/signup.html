@@ -1,7 +1,16 @@
-<h1> Sign Up</h1>
+{% extends 'index.html' %}
+{% block nav_link %}href="{% url 'login' %}"{% endblock %}{% block nav_lnk_lb %}Sign In{% endblock %}
+{% block form_label %}Sign Up{% endblock %}
 
-<form method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit", name="Create Account">Create Account</button>
-</form>
+{% block main %}
+ <div class="login-clean">
+    <form method="post">{% csrf_token %}
+        <h2 >Sign Up</h2>
+        <h2 class="sr-only">Signup Form</h2>
+        {% block form %}
+        {{ form.as_p }}
+        {% endblock %}
+        <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Create Account</button></div>
+    </form>
+</div>
+{% endblock %}

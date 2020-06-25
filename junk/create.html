@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% if user.is_authenticated %}
+{%block title%}New{%endblock%}
+
+{% block nav %}
+<nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
+    <div class="container"><a class="navbar-brand" href="{% url 'dashboard' %}"><i class="fa fa-star" id="logostar"></i><strong>Todowoo...</strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav">
+                <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'spec' 'important' %}">Important</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'spec' 'urgent' %}">Urgent</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'spec' 'due_soon' %}">Due Soon</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'spec' 'completed' %}">Complete</a></li>
+            </ul>
+            <form class="form-inline mr-auto" target="_self">
+                <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" id="search-field" name="search"></div>
+            </form>
+            <div><a class="btn btn-light action-button" role="button" href="#">Profile&nbsp;</a></div>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button class="btn btn-light action-button" type="submit">Logout&nbsp;</button>
+            </form>
+    </div>
+</nav>
+{% endblock %}
+
+{% block main %}
+<body style="background: #7abaff">
+
+</body>
+{%endblock%}
+{% endif %}
+

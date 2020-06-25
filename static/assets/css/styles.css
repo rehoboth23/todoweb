@@ -1,0 +1,73 @@
+.footerP {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background: #2c3134;
+}
+
+#createbtn {
+  background: rgb(245,236,12);
+  color: rgb(196,32,31);
+  border-radius: 20px;
+}
+
+#createbtn:hover {
+  color: rgb(196,32,31);
+  background: #66d7d7;
+}
+
+#insta:hover {
+  color: rgb(196,32,31);
+}
+
+#snap:hover {
+  color: rgb(196,32,31);
+}
+
+#twitter:hover {
+  color: rgb(196,32,31);
+}
+
+#facebook:hover {
+  color: rgb(196,32,31);
+}
+
+.list-inline-item:not(:last-child):hover {
+  color: rgb(196,32,31);
+}
+
+#policy:hover {
+  color: rgb(196,32,31);
+}
+
+.list-inline {
+}
+
+#logostar {
+  color: rgb(244,72,107);
+  letter-spacing: 0.5rem;
+  font-size: 2rem;
+}
+
+#createform {
+  position: relative;
+  margin: auto;
+  top: 200px;
+  min-width: 3in;
+  width: 50%;
+}
+
+#submitbtn {
+  justify-self: center;
+  background-color: rgb(245,236,12);
+  border-radius: 20px;
+  color: white;
+}
+#submitbtn:hover {
+  background-color: #66d7d7;
+  color: rgb(196,32,31);
+}
+.ctform {
+  padding-bottom: 5px;
+}
