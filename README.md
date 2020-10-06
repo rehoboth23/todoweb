@@ -14,4 +14,10 @@ urgent, or due soon. Completed items and useless items can be marked as complete
 **mkdir** src    
 **cd** src  
 **git** clone <this repository link>    
-**pip** install django 
+**pip** install django  
+**python manage.py makemigrations**  
+**python manage.py migrate**   
+  
+
+# Test Server
+**python manage.py runsevrer**
