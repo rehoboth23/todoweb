@@ -11,7 +11,7 @@ urgent, or due soon. Completed items and useless items can be marked as complete
 **virtualenv** [environment name]  
 **cd** [environment name]  
 **source bin/activate**
-**mkdir** src  
+**mkdir** src    
 **cd** src  
 **git** clone <this repository link>    
 **pip** install django 
