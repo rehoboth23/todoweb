@@ -13,7 +13,7 @@ urgent, or due soon. Completed items and useless items can be marked as complete
 **source bin/activate**
 **mkdir** src    
 **cd** src  
-**git** clone <this repository link>    
+**git** clone [this repository link]   
 **pip** install django  
 **python manage.py makemigrations**  
 **python manage.py migrate**   
